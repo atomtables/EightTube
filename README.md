@@ -15,6 +15,7 @@ The homepage consisted of 3 items: Popular videos, trending videos, and subscrib
 ![wp_ss_20240329_0002](https://github.com/atomtables/EightTube/assets/76572470/4bb7057f-b005-4771-a779-98210698b0be)
 ### Subscribed
 ![wp_ss_20240329_0006](https://github.com/atomtables/EightTube/assets/76572470/3e3d80d6-4b1e-4490-878a-4e83b269e1fa)
+
 You can subscribe to any channel from that channel's page. "show" moved the user to the channel page.
 
 ## Settings
@@ -51,6 +52,7 @@ This page is arguably the most important page of the app. It shows information a
 ### Video Watching
 The Video streaming quality page looked similar to the video+audio download page.
 ![wp_ss_20240329_0018](https://github.com/atomtables/EightTube/assets/76572470/d8dc9813-9cc5-49e5-a736-55c84736e782)
+
 (bad quality was from the video, not the app)
 
 All pictures are available on the repo.
