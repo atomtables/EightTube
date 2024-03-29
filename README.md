@@ -2,6 +2,7 @@
 EightTube is an old project of mine back in the summer of '23 to get YouTube working on Windows Phone.
 This project's growth accelerated, mainly because of my iPhone SE's broken state, and I was making my Nokia Lumia 635 my daily driver.
 The app was based on the InvidiousAPI, and used the WinRT Phone with C# in Visual Studio 2015.
+A majority of the "inaccurate" data, or the "missing" data is usually from the InvidiousAPI's flakiness.
 
 Unfortunately, this project's source code, compilation files, and builds have all been lost to a corrupted partition. This project meant a lot to me, as it was a project I was extremely fond about, considering the phone I used for development was my grandfather's Windows Phone.
 
