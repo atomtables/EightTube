@@ -14,3 +14,5 @@ You will note that using your own Invidious API will result in a significantly s
 help of weidenwiesel at nerdvpn.de (big thanks by the way), you can use the app with a public instance. Also, because of
 YouTube's attempts to take down invidious instances, Invidious may not be as reliable or provide the most accurate data.
 Bottom line is it at least works.
+
+There's only one commit because I absolutely hate Windows and Git on Windows and Visual Studio 2015's handling of git repos. (Even Xcode does a better job and Xcode sucks for git.)
