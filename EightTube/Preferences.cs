@@ -13,15 +13,15 @@ namespace EightTube
     class Preferences
     {
         // built in support for invidious.nerdvpn.de, build changing this IP address.
-        public static string API = "http://192.168.1.6:3000";
+        public static string API = "https://invidious.nerdvpn.de";
 
         // ok i cheated but its not my fault
-        public static readonly string Popular = $"https://invidious.nerdvpn.de/api/v1/popular";
-        public static readonly string Trending = $"{API}/api/v1/trending";
-        public static readonly string Video = $"{API}/api/v1/videos";
-        public static readonly string Comments = $"{API}/api/v1/comments";
-        public static readonly string Channel = $"{API}/api/v1/channels";
-        public static readonly string Search = $"{API}/api/v1/search";
+        public static string Popular { get { return $"https://invidious.nerdvpn.de/api/v1/popular"; } }
+        public static string Trending { get { return $"{API}/api/v1/trending"; } }
+        public static string Video { get { return $"{API}/api/v1/videos"; } }
+        public static string Comments { get { return $"{API}/api/v1/comments"; } }
+        public static string Channel { get { return $"{API}/api/v1/channels"; } }
+        public static string Search { get { return $"{API}/api/v1/search"; } }
 
         public static List<Tuple<String, String>> Subscriptions = new List<Tuple<string, string>>();
         public static void RefreshSubscriptionsList()

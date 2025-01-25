@@ -12,7 +12,7 @@ using Windows.UI.Popups;
 
 namespace EightTube.API
 {
-    [System.Runtime.Serialization.DataContract]
+    [DataContract]
     public abstract class Invidious
     {
 

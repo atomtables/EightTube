@@ -185,6 +185,14 @@ namespace EightTube.UI
             }, TrendingVideoDelegate);
         }
 
+        private void SettingsButton_Click(object sender, RoutedEventArgs e)
+        {
+            if (!Frame.Navigate(typeof(SettingsPage)))
+            {
+                throw new Exception("Navigation failed");
+            }
+        }
+
         private async void SubscriptionsVideoDelegate(IUICommand command)
         {
             List<Channel> subscriptions = new List<Channel>();

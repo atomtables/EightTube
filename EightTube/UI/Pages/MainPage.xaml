@@ -81,8 +81,7 @@
         <CommandBar>
             <AppBarButton x:Uid="SearchButton" x:Name="SearchButton" Label="search" Icon="Find" Click="SearchButton_Click" />
             <CommandBar.SecondaryCommands>
-                <AppBarButton x:Uid="SecondaryButton1" x:Name="SecondaryButton1" Label="secondary command 1" />
-                <AppBarButton x:Uid="SecondaryButton2" x:Name="SecondaryButton2" Label="secondary command 2" />
+                <AppBarButton x:Uid="SettingsButton" x:Name="SettingsButton" Label="settings" Click="SettingsButton_Click" />
             </CommandBar.SecondaryCommands>
         </CommandBar>
     </Page.BottomAppBar>

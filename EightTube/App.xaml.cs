@@ -49,6 +49,8 @@ namespace EightTube
             this.Suspending += this.OnSuspending;
             
             string subs = (string)ApplicationData.Current.LocalSettings.Values["Subscriptions"];
+            string api = (string)ApplicationData.Current.LocalSettings.Values["API"];
+            if (api != null) Preferences.API = api;
             System.Diagnostics.Debug.WriteLine(subs);
             if (subs != null)
             {
