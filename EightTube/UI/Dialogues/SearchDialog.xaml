@@ -1,0 +1,29 @@
+﻿<ContentDialog
+    x:Class="EightTube.UI.SearchDialog"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:EightTube.UI"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d"
+    Title="SEARCH FOR CONTENT"
+    PrimaryButtonText="search"  
+    SecondaryButtonText="cancel"
+    PrimaryButtonClick="ContentDialog_PrimaryButtonClick"
+    SecondaryButtonClick="ContentDialog_SecondaryButtonClick">
+
+    <StackPanel VerticalAlignment="Stretch" HorizontalAlignment="Stretch">
+        <TextBox x:Name="QueryBox" Header="Query"/>
+        <ComboBox x:Name="TypeBox" Header="Type" SelectedIndex="0">
+            <ComboBoxItem x:Name="All" Content="All Content" />
+            <ComboBoxItem x:Name="Videos" Content="Videos" />
+            <ComboBoxItem x:Name="Channels" Content="Channels" />
+        </ComboBox>
+        <!-- Content body -->
+        <TextBlock x:Name="body" Style="{StaticResource MessageDialogContentStyle}" TextWrapping="Wrap">
+            <TextBlock.Text>
+                Search may be unstable due to YouTube's pushback of Invidious Instances
+            </TextBlock.Text>
+        </TextBlock>
+    </StackPanel>
+</ContentDialog>

@@ -1,0 +1,231 @@
+﻿<Page
+    x:Class="EightTube.UI.VideoPage"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:EightTube.UI"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d"
+    DataContext="{Binding DefaultViewModel, RelativeSource={RelativeSource Self}}"
+    Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+
+    <Page.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="/UI/Utilities/DataTemplates.xaml" />
+            </ResourceDictionary.MergedDictionaries>
+
+            <DataTemplate x:Key="SmallTitleTemplate">
+                <TextBlock Text="{Binding}" FontSize="26" />
+            </DataTemplate>
+        </ResourceDictionary>
+    </Page.Resources>
+    
+    <Grid x:Name="LayoutRoot">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="37*"/>
+            <ColumnDefinition Width="163*"/>
+        </Grid.ColumnDefinitions>
+
+        <Grid.ChildrenTransitions>
+            <TransitionCollection>
+                <EntranceThemeTransition/>
+            </TransitionCollection>
+        </Grid.ChildrenTransitions>
+
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+
+        <!-- Title Panel -->
+        <StackPanel Grid.Row="0" Margin="19,0,0,0" Grid.ColumnSpan="2">
+            <TextBlock Text="EightTube" Style="{ThemeResource TitleTextBlockStyle}" Margin="0,12,0,0"/>
+            <TextBlock Text="video details" Margin="0,-6.5,0,26.5" Style="{ThemeResource HeaderTextBlockStyle}" CharacterSpacing="{ThemeResource PivotHeaderItemCharacterSpacing}"/>
+        </StackPanel>
+
+        <!--TODO: Content should be placed within the following grid-->
+        <Grid Grid.Row="1" x:Name="ContentRoot" Margin="19,0,19,0" Grid.ColumnSpan="2">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="100*" />
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="100*" />
+            </Grid.RowDefinitions>
+            
+            <ScrollViewer Grid.Column="0" Grid.Row="0">
+                <StackPanel Orientation="Vertical">
+                    <Grid Grid.Column="0" MinHeight="175">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="100*"/>
+                        </Grid.ColumnDefinitions>
+
+                        <ProgressBar 
+                            IsIndeterminate="True" 
+                            Margin="0,2,5,2"
+                            Canvas.ZIndex="5"
+                            HorizontalAlignment="Stretch"
+                            VerticalAlignment="Stretch"
+                            Grid.Column="0"
+                            MinWidth="100"
+                            />
+                        <Image 
+                            Source="{Binding Video.optimalThumbnail.URL}"
+                            Width="Auto"
+                            MinHeight="175"
+                            Stretch="UniformToFill"
+                            Canvas.ZIndex="10"
+                            />
+                    </Grid>
+                    <TextBlock 
+                        Style="{ThemeResource TitleTextBlockStyle}"
+                        FontWeight="Bold"
+                        FontSize="28"
+                        TextWrapping="WrapWholeWords"
+                        LineHeight="36"
+                        Margin="0,10"
+                        Text="{Binding Video.title}"
+                        />
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="Auto"/>
+                        </Grid.ColumnDefinitions>
+
+                        <Grid Grid.Column="0" VerticalAlignment="Center">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="40" />
+                                <ColumnDefinition Width="*" />
+                            </Grid.ColumnDefinitions>
+
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="40" />
+                            </Grid.RowDefinitions>
+
+                            <Ellipse Grid.Column="0" Grid.Row="0" Width="40" Height="40" Margin="0,0,0,0" VerticalAlignment="Center">
+                                <Ellipse.Fill>
+                                    <ImageBrush ImageSource="{Binding Video.authorThumbnail.URL}" />
+                                </Ellipse.Fill>
+                            </Ellipse>
+                            <StackPanel Margin="10,0,0,0" Grid.Column="1" Grid.Row="0" Orientation="Vertical" VerticalAlignment="Center">
+                                <TextBlock Margin="0" FontSize="18" Text="{Binding Video.author}"/>
+                                <TextBlock Style="{ThemeResource ListViewItemSubheaderTextBlockStyle}" FontSize="14">
+                                    <Run Text="{Binding Video.subCountText}" />
+                                    <Run Text="subs" />
+                                </TextBlock>
+                            </StackPanel>
+                        </Grid>
+                        <Button 
+                            Grid.Column="1" 
+                            Content="view" 
+                            VerticalAlignment="Center" 
+                            HorizontalAlignment="Right"
+                            Click="ChannelButton_Click"/>
+                    </Grid>
+                    <Grid Margin="0,10">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="Auto" />
+                            <ColumnDefinition Width="*" />
+                        </Grid.ColumnDefinitions>
+                        
+                        <StackPanel Grid.Column="0">
+                            <TextBlock 
+                                Style="{ThemeResource ListViewItemSubheaderTextBlockStyle}"
+                                Text="{Binding Video.publishedFormattedDate}"
+                                />
+                            <TextBlock 
+                                Style="{ThemeResource ListViewItemSubheaderTextBlockStyle}">
+                                <Run Text="{Binding Video.likeRatio}"/><Run Text="%" />
+                                <Run Text="of viewers liked this" />
+                            </TextBlock>
+                        </StackPanel>
+
+                        <StackPanel Grid.Column="1">
+                            <TextBlock 
+                                Style="{ThemeResource ListViewItemSubheaderTextBlockStyle}"
+                                HorizontalAlignment="Right">
+                                <Run Text="{Binding Video.viewCount}" />
+                                <Run Text="views" />
+                            </TextBlock>
+                            <TextBlock 
+                                Style="{ThemeResource ListViewItemSubheaderTextBlockStyle}"
+                                HorizontalAlignment="Right">
+                                <Run Text="{Binding Video.likeCount}" />
+                                <Run Text="likes" />
+                            </TextBlock>
+                        </StackPanel>
+                    </Grid>
+                    <Pivot
+                        x:Uid="VideoFinerDetailsPivot"
+                        x:Name="VideoFinerDetailsPivot"
+                        CommonNavigationTransitionInfo.IsStaggerElement="True"
+                        HeaderTemplate="{StaticResource SmallTitleTemplate}"
+                        Margin="-18,0,0,0">
+
+                        <PivotItem 
+                            Header="Description"
+                            Margin="19,14.5,0,0">
+                            
+                            <TextBlock 
+                                Text="{Binding Video.description}" 
+                                Style="{ThemeResource BaseTextBlockStyle}"
+                                TextWrapping="WrapWholeWords"
+                                TextTrimming="WordEllipsis"
+                                FontSize="14"
+                                LineHeight="28"
+                                />
+                            
+                        </PivotItem>
+
+                        <PivotItem 
+                            Header="Comments"
+                            Margin="19,14.5,0,0">
+
+                            <Grid>
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="*" />
+                                    <RowDefinition Height="Auto" />
+                                </Grid.RowDefinitions>
+
+                                <ListView
+                                    ItemsSource="{Binding Comments.comments}"
+                                    IsItemClickEnabled="True"
+                                    ItemClick="Comment_ItemClick"
+                                    Loaded="CommentsListView_Loaded"
+                                    Grid.Row="0"
+                                    ContinuumNavigationTransitionInfo.ExitElementContainer="True"
+                                    ItemTemplate="{StaticResource Comment}">
+                                </ListView>
+
+                                <Button
+                                    HorizontalAlignment="Right"
+                                    Content="load more"
+                                    Grid.Row="1"
+                                    Click="CommentsButton_Click" 
+                                    IsEnabled="{Binding EnableCommentLoadButton}"/>
+                            </Grid>
+
+                        </PivotItem>
+
+                        <PivotItem
+                            Header="Recommended"
+                            Margin="19,14.5,0,0">
+                            <ListView
+                                ItemsSource="{Binding Video.recommendedVideos}"
+                                ItemTemplate="{StaticResource Video}"
+                                IsItemClickEnabled="True"
+                                ItemClick="Video_ItemClick"
+                                ContinuumNavigationTransitionInfo.ExitElementContainer="True" />
+                        </PivotItem>
+                    </Pivot>
+                </StackPanel>
+            </ScrollViewer>
+        </Grid>
+    </Grid>
+
+    <Page.BottomAppBar>
+        <CommandBar>
+            <AppBarButton x:Uid="SearchButton" x:Name="SearchButton" Label="play" Icon="Play" Click="PlayVideoButton_Click" />
+        </CommandBar>
+    </Page.BottomAppBar>
+</Page>

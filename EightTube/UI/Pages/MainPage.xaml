@@ -1,0 +1,89 @@
+﻿<Page
+    x:Class="EightTube.UI.MainPage"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:EightTube.UI"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+    mc:Ignorable="d"
+    DataContext="{Binding DefaultViewModel, RelativeSource={RelativeSource Self}}"
+    Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+    <Page.Transitions>
+        <TransitionCollection>
+            <NavigationThemeTransition>
+                <NavigationThemeTransition.DefaultNavigationTransitionInfo>
+                    <CommonNavigationTransitionInfo IsStaggeringEnabled="True"/>
+                </NavigationThemeTransition.DefaultNavigationTransitionInfo>
+            </NavigationThemeTransition>
+        </TransitionCollection>
+    </Page.Transitions>
+    <Page.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="/UI/Utilities/DataTemplates.xaml" />
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
+    </Page.Resources>
+
+    <Grid>
+        <Pivot x:Uid="MainAppPivot" Title="EightTube" x:Name="MainAppPivot" CommonNavigationTransitionInfo.IsStaggerElement="True">
+            <!--Pivot item one-->
+            <!-- 19,14.5-->
+            <PivotItem
+                x:Uid="Popular"
+                Margin="19,14.5,0,0"
+                Header="popular"
+                CommonNavigationTransitionInfo.IsStaggerElement="True">
+                <!--Double line list with text wrapping-->
+                <ListView
+                    ItemsSource="{Binding Popular}"
+                    IsItemClickEnabled="True"
+                    ItemClick="Video_ItemClick"
+                    Loaded="FirstPivot_Loaded"
+                    ContinuumNavigationTransitionInfo.ExitElementContainer="True" 
+                    ItemTemplate="{StaticResource Video}"/>
+            </PivotItem>
+
+            <!--Pivot item two-->
+            <PivotItem
+                x:Uid="Trending"
+                Margin="19,14.5,0,0"
+                Header="trending">
+                <!--Double line list no text wrapping-->
+                <ListView
+                    ItemsSource="{Binding Trending}"
+                    IsItemClickEnabled="True"
+                    ItemClick="Video_ItemClick"
+                    Loaded="SecondPivot_Loaded"
+                    ContinuumNavigationTransitionInfo.ExitElementContainer="True"
+                    ItemTemplate="{StaticResource Video}" />
+            </PivotItem>
+
+            <!--Pivot item three-->
+            <PivotItem
+                x:Uid="Subscriptions"
+                Margin="19,14.5,0,0"
+                Header="subscriptions">
+                <!--Double line list no text wrapping-->
+                <ListView
+                    ItemsSource="{Binding Subscriptions}"
+                    IsItemClickEnabled="True"
+                    ItemClick="Channel_ItemClick"
+                    ContinuumNavigationTransitionInfo.ExitElementContainer="True"
+                    ItemTemplate="{StaticResource Channel}"
+                    Loaded="ThirdPivot_Loaded"
+                    />
+            </PivotItem>
+        </Pivot>
+    </Grid>
+
+    <Page.BottomAppBar>
+        <CommandBar>
+            <AppBarButton x:Uid="SearchButton" x:Name="SearchButton" Label="search" Icon="Find" Click="SearchButton_Click" />
+            <CommandBar.SecondaryCommands>
+                <AppBarButton x:Uid="SecondaryButton1" x:Name="SecondaryButton1" Label="secondary command 1" />
+                <AppBarButton x:Uid="SecondaryButton2" x:Name="SecondaryButton2" Label="secondary command 2" />
+            </CommandBar.SecondaryCommands>
+        </CommandBar>
+    </Page.BottomAppBar>
+</Page>

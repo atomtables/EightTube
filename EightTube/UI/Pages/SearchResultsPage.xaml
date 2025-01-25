@@ -1,0 +1,67 @@
+﻿<Page
+    x:Class="EightTube.UI.SearchResultsPage"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:EightTube.UI"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d"
+    DataContext="{Binding DefaultViewModel, RelativeSource={RelativeSource Self}}"
+    Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+
+    <Page.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="/UI/Utilities/DataTemplates.xaml" />
+            </ResourceDictionary.MergedDictionaries>
+
+            <local:SearchableTemplateSelector 
+                x:Key="SearchableTemplateSelector"
+                VideoTemplate="{StaticResource Video}"
+                ChannelTemplate="{StaticResource Channel}"/>
+        </ResourceDictionary>
+    </Page.Resources>
+    
+    <Grid x:Name="LayoutRoot">
+
+        <Grid.ChildrenTransitions>
+            <TransitionCollection>
+                <EntranceThemeTransition/>
+            </TransitionCollection>
+        </Grid.ChildrenTransitions>
+
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+
+        <!-- Title Panel -->
+        <StackPanel Grid.Row="0" Margin="19,0,0,0">
+            <TextBlock Text="EightTube" Style="{ThemeResource TitleTextBlockStyle}" Margin="0,12,0,0"/>
+            <TextBlock Text="search results" Margin="0,-6.5,0,26.5" Style="{ThemeResource HeaderTextBlockStyle}" CharacterSpacing="{ThemeResource PivotHeaderItemCharacterSpacing}"/>
+        </StackPanel>
+
+        <!--TODO: Content should be placed within the following grid-->
+        <Grid Grid.Row="1" x:Name="ContentRoot" Margin="19,0,19,0">
+            <ScrollViewer>
+                <StackPanel>
+                    <TextBlock Text="{Binding Count}" Margin="0,0,0,9.5" FontSize="14" />
+                    <ListView
+                        ItemsSource="{Binding Results}"
+                        IsItemClickEnabled="True"
+                        ItemClick="Item_ItemClick"
+                        ContinuumNavigationTransitionInfo.ExitElementContainer="True"
+                        ItemTemplateSelector="{StaticResource SearchableTemplateSelector}" />
+                </StackPanel>
+            </ScrollViewer>
+        </Grid>
+        
+    </Grid>
+
+    <Page.BottomAppBar>
+        <CommandBar>
+            <AppBarButton x:Uid="SearchButton" x:Name="LastPageButton" Label="previous" Icon="Back" Click="LastPage" IsEnabled="{Binding BackButton}" />
+            <AppBarButton x:Uid="SearchButton" x:Name="NextPageButton" Label="next" Icon="Forward" Click="NextPage" />
+        </CommandBar>
+    </Page.BottomAppBar>
+</Page>
